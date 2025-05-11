@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Little Italy Marrakech</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Additional Menu Page Styles */
+        .menu-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .menu-category-btn {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid var(--gold);
+            padding: 10px 25px;
+            margin: 0 10px 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-primary);
+        }
+        
+        .menu-category-btn:hover, .menu-category-btn.active {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+        
+        .menu-section {
+            margin-bottom: 60px;
+        }
+        
+        .menu-section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .menu-section-title:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 2px;
+            background-color: var(--gold);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-dish {
+            background-color: var(--dark-gray);
+            border: 1px solid var(--gold);
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-dish:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dish-name {
+            font-family: var(--font-primary);
+            color: var(--gold);
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .dish-description {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .dish-price {
+            font-family: var(--font-primary);
+            color: var(--gold);
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .menu-page-content {
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="Little Italy Marrakech Logo">
+                    </a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html" class="active">Menu</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="reservation-btn">
+                    <a href="index.html#reservation">RESERVATION</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="menu-page-content">
+        <div class="container">
+            <div class="menu-header">
+                <h2>Our Authentic Italian Menu</h2>
+                <p>Crafted with passion and the finest ingredients, bringing the true taste of Italy to Marrakech</p>
+            </div>
+            
+            <div class="menu-categories">
+                <button class="menu-category-btn active" data-category="all">All</button>
+                <button class="menu-category-btn" data-category="antipasti">Antipasti</button>
+                <button class="menu-category-btn" data-category="pasta">Pasta</button>
+                <button class="menu-category-btn" data-category="pizza">Pizza</button>
+                <button class="menu-category-btn" data-category="risotto">Risotto</button>
+                <button class="menu-category-btn" data-category="secondi">Secondi</button>
+                <button class="menu-category-btn" data-category="dolci">Dolci</button>
+                <button class="menu-category-btn" data-category="bevande">Bevande</button>
+            </div>
+            
+            <!-- Antipasti Section -->
+            <div class="menu-section" id="antipasti">
+                <h3 class="menu-section-title">Antipasti (Starters)</h3>
+                <div class="menu-items">
+                    <div class="menu-dish" data-category="antipasti">
+                        <div class="dish-name">Bruschetta al Pomodoro</div>
+                        <div class="dish-description">Toasted bread topped with fresh tomatoes, garlic, basil, and extra virgin olive oil</div>
+                        <div class="dish-price">65 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="antipasti">
+                        <div class="dish-name">Caprese</div>
+                        <div class="dish-description">Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze and olive oil</div>
+                        <div class="dish-price">80 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="antipasti">
+                        <div class="dish-name">Carpaccio di Manzo</div>
+                        <div class="dish-description">Thinly sliced raw beef with arugula, Parmesan, lemon juice, and olive oil</div>
+                        <div class="dish-price">95 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="antipasti">
+                        <div class="dish-name">Antipasto Misto</div>
+                        <div class="dish-description">Selection of Italian cured meats, cheeses, marinated vegetables, and olives</div>
+                        <div class="dish-price">120 MAD</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pasta Section -->
+            <div class="menu-section" id="pasta">
+                <h3 class="menu-section-title">Pasta</h3>
+                <div class="menu-items">
+                    <div class="menu-dish" data-category="pasta">
+                        <div class="dish-name">Spaghetti Carbonara</div>
+                        <div class="dish-description">Spaghetti with pancetta, egg, Pecorino Romano, black pepper</div>
+                        <div class="dish-price">110 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="pasta">
+                        <div class="dish-name">Linguine ai Frutti di Mare</div>
+                        <div class="dish-description">Linguine with mixed seafood, garlic, white wine, and cherry tomatoes</div>
+                        <div class="dish-price">135 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="pasta">
+                        <div class="dish-name">Penne all'Arrabbiata</div>
+                        <div class="dish-description">Penne with spicy tomato sauce, garlic, and parsley</div>
+                        <div class="dish-price">95 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="pasta">
+                        <div class="dish-name">Lasagna alla Bolognese</div>
+                        <div class="dish-description">Layers of pasta with Bolognese sauce, béchamel, and Parmesan cheese</div>
+                        <div class="dish-price">120 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="pasta">
+                        <div class="dish-name">Ravioli ai Funghi</div>
+                        <div class="dish-description">Mushroom-filled ravioli with truffle cream sauce and Parmesan</div>
+                        <div class="dish-price">125 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="pasta">
+                        <div class="dish-name">Tagliatelle al Ragù</div>
+                        <div class="dish-description">Ribbon pasta with slow-cooked beef ragù and Parmesan</div>
+                        <div class="dish-price">115 MAD</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pizza Section -->
+            <div class="menu-section" id="pizza">
+                <h3 class="menu-section-title">Pizza</h3>
+                <div class="menu-items">
+                    <div class="menu-dish" data-category="pizza">
+                        <div class="dish-name">Margherita</div>
+                        <div class="dish-description">Tomato sauce, mozzarella, basil, and olive oil</div>
+                        <div class="dish-price">90 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="pizza">
+                        <div class="dish-name">Quattro Formaggi</div>
+                        <div class="dish-description">Four cheeses: mozzarella, gorgonzola, fontina, and Parmesan</div>
+                        <div class="dish-price">110 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="pizza">
+                        <div class="dish-name">Diavola</div>
+                        <div class="dish-description">Tomato sauce, mozzarella, spicy salami, and chili flakes</div>
+                        <div class="dish-price">105 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="pizza">
+                        <div class="dish-name">Prosciutto e Funghi</div>
+                        <div class="dish-description">Tomato sauce, mozzarella, ham, and mushrooms</div>
+                        <div class="dish-price">115 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="pizza">
+                        <div class="dish-name">Capricciosa</div>
+                        <div class="dish-description">Tomato sauce, mozzarella, ham, mushrooms, artichokes, olives, and anchovies</div>
+                        <div class="dish-price">120 MAD</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Risotto Section -->
+            <div class="menu-section" id="risotto">
+                <h3 class="menu-section-title">Risotto</h3>
+                <div class="menu-items">
+                    <div class="menu-dish" data-category="risotto">
+                        <div class="dish-name">Risotto ai Funghi Porcini</div>
+                        <div class="dish-description">Arborio rice with porcini mushrooms, white wine, and Parmesan</div>
+                        <div class="dish-price">125 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="risotto">
+                        <div class="dish-name">Risotto alla Milanese</div>
+                        <div class="dish-description">Saffron-infused rice with butter and Parmesan</div>
+                        <div class="dish-price">115 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="risotto">
+                        <div class="dish-name">Risotto ai Frutti di Mare</div>
+                        <div class="dish-description">Rice with mixed seafood, white wine, and herbs</div>
+                        <div class="dish-price">140 MAD</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Secondi Section -->
+            <div class="menu-section" id="secondi">
+                <h3 class="menu-section-title">Secondi (Main Courses)</h3>
+                <div class="menu-items">
+                    <div class="menu-dish" data-category="secondi">
+                        <div class="dish-name">Saltimbocca alla Romana</div>
+                        <div class="dish-description">Veal escalopes with prosciutto and sage in a white wine sauce</div>
+                        <div class="dish-price">160 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="secondi">
+                        <div class="dish-name">Pollo al Marsala</div>
+                        <div class="dish-description">Chicken breast cooked with Marsala wine, mushrooms, and herbs</div>
+                        <div class="dish-price">140 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="secondi">
+                        <div class="dish-name">Osso Buco</div>
+                        <div class="dish-description">Braised veal shanks with vegetables, white wine, and gremolata</div>
+                        <div class="dish-price">175 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="secondi">
+                        <div class="dish-name">Bistecca alla Fiorentina</div>
+                        <div class="dish-description">Grilled T-bone steak seasoned with herbs and olive oil (500g)</div>
+                        <div class="dish-price">220 MAD</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dolci Section -->
+            <div class="menu-section" id="dolci">
+                <h3 class="menu-section-title">Dolci (Desserts)</h3>
+                <div class="menu-items">
+                    <div class="menu-dish" data-category="dolci">
+                        <div class="dish-name">Tiramisu</div>
+                        <div class="dish-description">Classic Italian dessert with coffee-soaked ladyfingers and mascarpone cream</div>
+                        <div class="dish-price">70 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="dolci">
+                        <div class="dish-name">Panna Cotta</div>
+                        <div class="dish-description">Vanilla cream pudding with berry coulis</div>
+                        <div class="dish-price">65 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="dolci">
+                        <div class="dish-name">Cannoli Siciliani</div>
+                        <div class="dish-description">Crispy pastry tubes filled with sweet ricotta cream and pistachios</div>
+                        <div class="dish-price">60 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="dolci">
+                        <div class="dish-name">Affogato</div>
+                        <div class="dish-description">Vanilla gelato "drowned" with a shot of hot espresso</div>
+                        <div class="dish-price">55 MAD</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bevande Section -->
+            <div class="menu-section" id="bevande">
+                <h3 class="menu-section-title">Bevande (Drinks)</h3>
+                <div class="menu-items">
+                    <div class="menu-dish" data-category="bevande">
+                        <div class="dish-name">Italian Wine Selection</div>
+                        <div class="dish-description">Selection of red, white, and sparkling wines from different regions of Italy</div>
+                        <div class="dish-price">From 220 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="bevande">
+                        <div class="dish-name">Italian Coffee</div>
+                        <div class="dish-description">Espresso, Cappuccino, Latte, Macchiato</div>
+                        <div class="dish-price">From 25 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="bevande">
+                        <div class="dish-name">Limoncello</div>
+                        <div class="dish-description">Traditional Italian lemon liqueur served chilled</div>
+                        <div class="dish-price">60 MAD</div>
+                    </div>
+                    
+                    <div class="menu-dish" data-category="bevande">
+                        <div class="dish-name">Aperitivi</div>
+                        <div class="dish-description">Aperol Spritz, Negroni, Campari Soda</div>
+                        <div class="dish-price">From 65 MAD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="Little Italy Marrakech Logo">
+                    <p>Authentic Italian cuisine in the heart of Marrakech</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue des Orangers, Gueliz, Marrakech</p>
+                    <p><i class="fas fa-phone"></i> +212 524 123 456</p>
+                    <p><i class="fas fa-envelope"></i> info@littleitalymarrakech.com</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Little Italy Marrakech. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Menu Category Filter Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.menu-category-btn');
+            const menuDishes = document.querySelectorAll('.menu-dish');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Show/hide menu items based on category
+                    menuDishes.forEach(dish => {
+                        if (category === 'all' || dish.getAttribute('data-category') === category) {
+                            dish.style.display = 'block';
+                        } else {
+                            dish.style.display = 'none';
+                        }
+                    });
+                    
+                    // Scroll to the category section if not "all"
+                    if (category !== 'all') {
+                        const sectionElement = document.getElementById(category);
+                        if (sectionElement) {
+                            sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
