@@ -1,5 +1,10 @@
 // Document Ready Function
 document.addEventListener('DOMContentLoaded', function() {
+    // Force elements to be visible (fallback for animation issues)
+    document.querySelectorAll('.menu-item, .speciality-item, .about-content > div, .contact-container > div, .section-title, .menu-grid, .speciality-items').forEach(element => {
+        element.style.opacity = '1';
+    });
+    
     // Sticky Header
     window.addEventListener('scroll', function() {
         const header = document.querySelector('header');
@@ -193,6 +198,7 @@ function setupTestimonialCarousel() {
 
 // Add animation when elements come into view
 function animateOnScroll() {
+    // Target elements with the specific animate-on-scroll class
     const elements = document.querySelectorAll('.animate-on-scroll');
     
     elements.forEach(element => {
@@ -203,6 +209,17 @@ function animateOnScroll() {
             element.classList.add('animated');
         }
     });
+    
+    // Make sure all elements are visible regardless of animation status
+    document.querySelectorAll('.menu-item, .speciality-item, .menu-grid, .speciality-items').forEach(element => {
+        if (element.style.opacity !== '1') {
+            element.style.opacity = '1';
+        }
+    });
 }
 
-window.addEventListener('scroll', animateOnScroll); 
+// Only add this event listener if it hasn't been added in index.html
+if (!window.animateScrollListenerAdded) {
+    window.addEventListener('scroll', animateOnScroll);
+    window.animateScrollListenerAdded = true;
+} 

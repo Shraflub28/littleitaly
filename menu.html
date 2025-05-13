@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Menu - Little Italy Marrakech</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -110,16 +110,28 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="images/logo.png" alt="Little Italy Marrakech Logo">
+                        <div class="text-logo">
+                            <div class="logo-main"><i class="fas fa-utensils logo-icon"></i>Little Italy<i class="fas fa-pizza-slice logo-icon"></i></div>
+                            <div class="logo-sub">MARRAKECH • EST. 2010</div>
+                        </div>
                     </a>
                 </div>
-                <nav>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav class="main-nav">
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="menu.html" class="active">Menu</a></li>
                         <li><a href="index.html#about">About</a></li>
                         <li><a href="index.html#contact">Contact</a></li>
                     </ul>
+                    <div class="mobile-reservation-btn">
+                        <a href="index.html#reservation">RESERVATION</a>
+                    </div>
                 </nav>
                 <div class="reservation-btn">
                     <a href="index.html#reservation">RESERVATION</a>
@@ -374,7 +386,10 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="images/logo.png" alt="Little Italy Marrakech Logo">
+                    <div class="text-logo">
+                        <div class="logo-main"><i class="fas fa-utensils logo-icon"></i>Little Italy<i class="fas fa-pizza-slice logo-icon"></i></div>
+                        <div class="logo-sub">MARRAKECH • EST. 2010</div>
+                    </div>
                     <p>Authentic Italian cuisine in the heart of Marrakech</p>
                 </div>
                 <div class="footer-links">
@@ -408,13 +423,79 @@
         </div>
     </footer>
 
+    <!-- Floating Mobile Reservation Button -->
+    <div class="floating-reservation-btn">
+        <a href="index.html#reservation">RESERVATION</a>
+    </div>
+
     <script src="js/script.js"></script>
     <script>
-        // Menu Category Filter Logic
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+        const body = document.body;
+        
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() {
+                this.classList.toggle('open');
+                mainNav.classList.toggle('open');
+                body.classList.toggle('menu-open');
+            });
+        }
+
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.main-nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    mobileMenuToggle.classList.remove('open');
+                    mainNav.classList.remove('open');
+                    body.classList.remove('menu-open');
+                }
+            });
+        });
+
+        // Menu Category Filter Logic with animations
         document.addEventListener('DOMContentLoaded', function() {
             const categoryButtons = document.querySelectorAll('.menu-category-btn');
             const menuDishes = document.querySelectorAll('.menu-dish');
             
+            // Apply initial animations to menu dishes with staggered delay
+            menuDishes.forEach((dish, index) => {
+                dish.style.opacity = '0';
+                dish.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    dish.style.transition = 'all 0.5s ease-out';
+                    dish.style.opacity = '1';
+                    dish.style.transform = 'translateY(0)';
+                }, 100 + (index * 50));
+            });
+            
+            // Enhanced hover effects for menu dishes
+            menuDishes.forEach(dish => {
+                dish.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 15px 30px rgba(200, 169, 126, 0.25)';
+                });
+                
+                dish.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                });
+            });
+            
+            // Category button click handler with animations
             categoryButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     // Remove active class from all buttons
@@ -425,24 +506,77 @@
                     
                     const category = this.getAttribute('data-category');
                     
-                    // Show/hide menu items based on category
+                    // Reset all dishes with fade out
                     menuDishes.forEach(dish => {
-                        if (category === 'all' || dish.getAttribute('data-category') === category) {
+                        dish.style.opacity = '0';
+                        dish.style.transform = 'translateY(20px)';
+                        dish.style.display = 'none';
+                    });
+                    
+                    // Show relevant dishes with staggered animation
+                    const relevantDishes = Array.from(menuDishes).filter(dish => 
+                        category === 'all' || dish.getAttribute('data-category') === category
+                    );
+                    
+                    relevantDishes.forEach((dish, index) => {
+                        setTimeout(() => {
                             dish.style.display = 'block';
-                        } else {
-                            dish.style.display = 'none';
-                        }
+                            
+                            // Force a reflow before animating
+                            void dish.offsetWidth;
+                            
+                            // Animate back in
+                            dish.style.opacity = '1';
+                            dish.style.transform = 'translateY(0)';
+                        }, 50 * index);
                     });
                     
                     // Scroll to the category section if not "all"
                     if (category !== 'all') {
                         const sectionElement = document.getElementById(category);
                         if (sectionElement) {
-                            sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                            // Add highlight animation to section
+                            sectionElement.classList.add('fade-in');
+                            
+                            sectionElement.scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'start', 
+                                inline: 'nearest' 
+                            });
                         }
                     }
                 });
             });
+            
+            // Logo icon pulse effect on hover
+            const logoIcons = document.querySelectorAll('.logo-icon');
+            logoIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.animationDuration = '0.5s';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.animationDuration = '2s';
+                });
+            });
+            
+            // Animate section titles on scroll
+            const animateTitles = function() {
+                const sectionTitles = document.querySelectorAll('.menu-section-title');
+                
+                sectionTitles.forEach(title => {
+                    const position = title.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (position < windowHeight - 50) {
+                        title.classList.add('slide-up');
+                    }
+                });
+            };
+            
+            // Initialize animations
+            animateTitles();
+            window.addEventListener('scroll', animateTitles);
         });
     </script>
 </body>
